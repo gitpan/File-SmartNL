@@ -10,19 +10,25 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.03';
-$DATE = '2003/07/26';
+$VERSION = '0.04';
+$DATE = '2004/05/03';
 $FILE = __FILE__;
 
 use vars qw(%INVENTORY);
 %INVENTORY = (
-    'lib/Docs/Site_SVD/File_SmartNL.pm' => [qw(0.03 2003/07/26), 'revised 0.02'],
-    'MANIFEST' => [qw(0.03 2003/07/26), 'generated, replaces 0.02'],
-    'Makefile.PL' => [qw(0.03 2003/07/26), 'generated, replaces 0.02'],
-    'README' => [qw(0.03 2003/07/26), 'generated, replaces 0.02'],
-    'lib/File/SmartNL.pm' => [qw(1.1 2003/07/19), 'unchanged'],
-    't/File/smartNL.t' => [qw(0.09 2003/07/26), 'revised 0.08'],
-    'tlib/File/Package.pm' => [qw(1.1 2003/07/26), 'new'],
+    'lib/Docs/Site_SVD/File_SmartNL.pm' => [qw(0.04 2004/05/03), 'revised 0.03'],
+    'MANIFEST' => [qw(0.04 2004/05/03), 'generated, replaces 0.03'],
+    'Makefile.PL' => [qw(0.04 2004/05/03), 'generated, replaces 0.03'],
+    'README' => [qw(0.04 2004/05/03), 'generated, replaces 0.03'],
+    'lib/File/SmartNL.pm' => [qw(1.14 2004/05/03), 'revised 1.1'],
+    't/File/SmartNL.d' => [qw(0.01 2004/05/03), 'new'],
+    't/File/SmartNL.pm' => [qw(0.01 2004/05/03), 'new'],
+    't/File/SmartNL.t' => [qw(0.1 2004/05/03), 'revised 0.09'],
+    't/File/File/Package.pm' => [qw(1.16 2004/05/03), 'new'],
+    't/File/Test/Tech.pm' => [qw(1.22 2004/05/03), 'new'],
+    't/File/Data/Secs2.pm' => [qw(1.19 2004/05/03), 'new'],
+    't/File/Data/SecsPack.pm' => [qw(0.04 2004/05/03), 'new'],
+    't/File/Data/Startup.pm' => [qw(0.04 2004/05/03), 'new'],
 
 );
 
@@ -49,11 +55,11 @@ use vars qw(%INVENTORY);
 
   File::SmartNL - translates any combination of CR and NL to the site \nl
 
- Revision: B
+ Revision: C
 
- Version: 0.03
+ Version: 0.04
 
- Date: 2003/07/26
+ Date: 2004/05/03
 
  Prepared for: General Public 
 
@@ -115,14 +121,6 @@ The one thing not hidden is that the methods need to know if the data is
 'text' data or 'binary' data. Normally, the assume the data is 'text' and
 are overriden by setting the 'binary' option.
 
-The methods in the C<File::SmartNL> package are designed to support the
-L<C<Test::STDmaker>|Test::STDmaker> and 
-the L<C<ExtUtils::SVDmaker>|ExtUtils::SVDmaker> packages.
-These packages generate test scripts and CPAN distribution files
-that must be portable between operating systems.
-Since C<File::SmartNL> is a separate package, the methods
-may be used elsewhere.
-
 Note that Perl 5.6 introduced a built-in smart nl functionality as an IO discipline :crlf.
 See I<Programming Perl> by Larry Wall, Tom Christiansen and Jon Orwant,
 page 754, Chapter 29: Functions, open function.
@@ -134,7 +132,7 @@ that have not upgraded to Perl 5.6.
 
 =head2 1.3 Document overview.
 
-This document releases File::SmartNL version 0.03
+This document releases File::SmartNL version 0.04
 providing a description of the inventory, installation
 instructions and other information necessary to
 utilize and track this release.
@@ -147,12 +145,14 @@ system file specification.
 
 =head2 3.1 Inventory of materials released.
 
-This document releases the file found
-at the following repository(s):
+This document releases the file 
 
-   http://www.softwarediamonds/packages/File-SmartNL-0.03
-   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/File-SmartNL-0.03
+ File-SmartNL-0.04.tar.gz
 
+found at the following repository(s):
+
+  http://www.softwarediamonds/packages/
+  http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 
 Restrictions regarding duplication and license provisions
 are as follows:
@@ -219,13 +219,19 @@ consists of the following files:
 
  file                                                         version date       comment
  ------------------------------------------------------------ ------- ---------- ------------------------
- lib/Docs/Site_SVD/File_SmartNL.pm                            0.03    2003/07/26 revised 0.02
- MANIFEST                                                     0.03    2003/07/26 generated, replaces 0.02
- Makefile.PL                                                  0.03    2003/07/26 generated, replaces 0.02
- README                                                       0.03    2003/07/26 generated, replaces 0.02
- lib/File/SmartNL.pm                                          1.1     2003/07/19 unchanged
- t/File/smartNL.t                                             0.09    2003/07/26 revised 0.08
- tlib/File/Package.pm                                         1.1     2003/07/26 new
+ lib/Docs/Site_SVD/File_SmartNL.pm                            0.04    2004/05/03 revised 0.03
+ MANIFEST                                                     0.04    2004/05/03 generated, replaces 0.03
+ Makefile.PL                                                  0.04    2004/05/03 generated, replaces 0.03
+ README                                                       0.04    2004/05/03 generated, replaces 0.03
+ lib/File/SmartNL.pm                                          1.14    2004/05/03 revised 1.1
+ t/File/SmartNL.d                                             0.01    2004/05/03 new
+ t/File/SmartNL.pm                                            0.01    2004/05/03 new
+ t/File/SmartNL.t                                             0.1     2004/05/03 revised 0.09
+ t/File/File/Package.pm                                       1.16    2004/05/03 new
+ t/File/Test/Tech.pm                                          1.22    2004/05/03 new
+ t/File/Data/Secs2.pm                                         1.19    2004/05/03 new
+ t/File/Data/SecsPack.pm                                      0.04    2004/05/03 new
+ t/File/Data/Startup.pm                                       0.04    2004/05/03 new
 
 
 =head2 3.3 Changes
@@ -323,7 +329,7 @@ t/Test/TestUtil/TestUtil....NOK 18# Test 18 got: '$VAR1 = '\\=head1 Title Page
   File::SmartNL - translates any combination of CR and NL to the site \nl
 
 
- Revision: B
+ Revision: C
 
 [snip]
 
@@ -462,6 +468,18 @@ The test of this module will precede immediately.
 The test support files in the tlib directory will vanish after
 the installtion.
 
+=item File-SmartNL-0.04
+
+The lastest build of Test::STDmaker expects the test library in the same
+directory as the test script.
+Coordiated with the lastest Test::STDmaker by moving the
+test library from tlib to t/File, the same directory as the test script
+and deleting the test library File::TestPath program module.
+
+Added better option support by using the C<Data::Startup> program module.
+
+Added a subroutine interface.
+
 =back
 
 =head2 3.4 Adaptation data.
@@ -486,18 +504,36 @@ and installation support are as follows:
 
 =item Installation Instructions.
 
-To installed the release file, use the CPAN module in the Perl release
+To installed the release file, use the CPAN module
+pr PPM module in the Perl release
 or the INSTALL.PL script at the following web site:
 
  http://packages.SoftwareDiamonds.com
 
 Follow the instructions for the the chosen installation software.
 
-The distribution file is at the following respositories:
+If all else fails, the file may be manually installed.
+Enter one of the following repositories in a web browser:
 
-   http://www.softwarediamonds/packages/File-SmartNL-0.03
-   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/File-SmartNL-0.03
+  http://www.softwarediamonds/packages/
+  http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 
+Right click on 'File-SmartNL-0.04.tar.gz' and download to a temporary
+installation directory.
+Enter the following where $make is 'nmake' for microsoft
+windows; otherwise 'make'.
+
+ gunzip File-SmartNL-0.04.tar.gz
+ tar -xf File-SmartNL-0.04.tar
+ perl Makefile.PL
+ $make test
+ $make install
+
+On Microsoft operating system, nmake, tar, and gunzip 
+must be in the exeuction path. If tar and gunzip are
+not install, download and install unxutils from
+
+ http://packages.softwarediamonds.com
 
 =item Prerequistes.
 
@@ -513,7 +549,7 @@ None.
 Most Perl installation software will run the following test script(s)
 as part of the installation:
 
- t/File/smartNL.t
+ t/File/SmartNL.t
 
 =item Installation support.
 
@@ -584,20 +620,7 @@ Plain Old Documentation
 =back
 
 =for html
-<hr>
-<p><br>
-<!-- BLK ID="PROJECT_MANAGEMENT" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="NOTICE" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="OPT-IN" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="LOG_CGI" -->
-<!-- /BLK -->
-<p><br>
+
 
 =cut
 
@@ -608,11 +631,11 @@ __DATA__
 DISTNAME: File-SmartNL^
 REPOSITORY_DIR: packages^
 
-VERSION : 0.03^
+VERSION : 0.04^
 FREEZE: 1^
 PREVIOUS_DISTNAME:  ^
-PREVIOUS_RELEASE: 0.02^
-REVISION: B^
+PREVIOUS_RELEASE: 0.03^
+REVISION: C^
 
 AUTHOR  : SoftwareDiamonds.com E<lt>support@SoftwareDiamonds.comE<gt>^
 ABSTRACT: translates any combination of CR and NL to the site \nl^
@@ -626,7 +649,7 @@ SVD_FSPEC: Unix^
 
 REPOSITORY: 
   http://www.softwarediamonds/packages/
-  http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/
+  http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 ^
 
 COMPRESS: gzip^
@@ -637,12 +660,17 @@ CHANGE2CURRENT:  ^
 
 AUTO_REVISE: 
 lib/File/SmartNL.pm
-t/File/smartNL.t
-lib/File/Package.pm => tlib/File/Package.pm
+t/File/SmartNL.*
+lib/File/Package.pm => t/File/File/Package.pm
+lib/Test/Tech.pm => t/File/Test/Tech.pm
+lib/Data/Secs2.pm => t/File/Data/Secs2.pm
+lib/Data/SecsPack.pm => t/File/Data/SecsPack.pm
+lib/Data/Startup.pm => t/File/Data/Startup.pm
 ^
 
 PREREQ_PM:  ^
-TESTS: t/File/smartNL.t^
+README_PODS: lib/File/SmartNL.pm^
+TESTS: t/File/SmartNL.t^
 EXE_FILES:  ^
 
 CHANGES:
@@ -879,6 +907,18 @@ The test of this module will precede immediately.
 The test support files in the tlib directory will vanish after
 the installtion.
 
+\=item File-SmartNL-0.04
+
+The lastest build of Test::STDmaker expects the test library in the same
+directory as the test script.
+Coordiated with the lastest Test::STDmaker by moving the
+test library from tlib to t/File, the same directory as the test script
+and deleting the test library File::TestPath program module.
+
+Added better option support by using the C<Data::Startup> program module.
+
+Added a subroutine interface.
+
 \=back
 
 ^
@@ -928,14 +968,6 @@ moving files between operating systems is mostly hidden in these methods.
 The one thing not hidden is that the methods need to know if the data is
 'text' data or 'binary' data. Normally, the assume the data is 'text' and
 are overriden by setting the 'binary' option.
-
-The methods in the C<File::SmartNL> package are designed to support the
-L<C<Test::STDmaker>|Test::STDmaker> and 
-the L<C<ExtUtils::SVDmaker>|ExtUtils::SVDmaker> packages.
-These packages generate test scripts and CPAN distribution files
-that must be portable between operating systems.
-Since C<File::SmartNL> is a separate package, the methods
-may be used elsewhere.
 
 Note that Perl 5.6 introduced a built-in smart nl functionality as an IO discipline :crlf.
 See I<Programming Perl> by Larry Wall, Tom Christiansen and Jon Orwant,
@@ -1018,16 +1050,38 @@ ANY WAY OUT OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 INSTALLATION:
-To installed the release file, use the CPAN module in the Perl release
+To installed the release file, use the CPAN module
+pr PPM module in the Perl release
 or the INSTALL.PL script at the following web site:
 
  http://packages.SoftwareDiamonds.com
 
 Follow the instructions for the the chosen installation software.
 
-The distribution file is at the following respositories:
+If all else fails, the file may be manually installed.
+Enter one of the following repositories in a web browser:
 
 ${REPOSITORY}
+
+Right click on '${DIST_FILE}' and download to a temporary
+installation directory.
+Enter the following where $make is 'nmake' for microsoft
+windows; otherwise 'make'.
+
+ gunzip ${BASE_DIST_FILE}.tar.${COMPRESS_SUFFIX}
+ tar -xf ${BASE_DIST_FILE}.tar
+ perl Makefile.PL
+ $make test
+ $make install
+
+On Microsoft operating system, nmake, tar, and gunzip 
+must be in the exeuction path. If tar and gunzip are
+not install, download and install unxutils from
+
+ http://packages.softwarediamonds.com
+^
+
+SUPPORT: 603 882-0846 E<lt>support@SoftwareDiamonds.comE<gt>
 ^
 
 SUPPORT: 603 882-0846 E<lt>support@SoftwareDiamonds.comE<gt>^
@@ -1068,20 +1122,7 @@ SEE_ALSO:
 ^
 
 HTML:
-<hr>
-<p><br>
-<!-- BLK ID="PROJECT_MANAGEMENT" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="NOTICE" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="OPT-IN" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="LOG_CGI" -->
-<!-- /BLK -->
-<p><br>
+
 ^
 ~-~
 

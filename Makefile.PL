@@ -17,13 +17,13 @@
 
 use ExtUtils::MakeMaker;
 
-my $tests = join ' ',unix2os('t/File/smartNL.t');
+my $tests = join ' ',unix2os('t/File/SmartNL.t');
 
 
 WriteMakefile(
     NAME => 'File::SmartNL',
     DISTNAME => 'File-SmartNL',
-    VERSION  => '0.03',
+    VERSION  => '0.04',
     dist     => {COMPRESS => 'gzip',
                 'gz' => 'gz'},
     test     => {TESTS => $tests},
