@@ -4,3 +4,4 @@ Makefile.PL
 README
 lib/File/SmartNL.pm
 t/File/smartNL.t
+tlib/File/Package.pm

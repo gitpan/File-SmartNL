@@ -23,11 +23,11 @@ my $tests = join ' ',unix2os('t/File/smartNL.t');
 WriteMakefile(
     NAME => 'File::SmartNL',
     DISTNAME => 'File-SmartNL',
-    VERSION  => '0.02',
+    VERSION  => '0.03',
     dist     => {COMPRESS => 'gzip',
                 'gz' => 'gz'},
     test     => {TESTS => $tests},
-    PREREQ_PM => {File::Package => 0},
+    
     
 
     ($] >= 5.005 ?     

@@ -10,18 +10,19 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.02';
-$DATE = '2003/07/19';
+$VERSION = '0.03';
+$DATE = '2003/07/26';
 $FILE = __FILE__;
 
 use vars qw(%INVENTORY);
 %INVENTORY = (
-    'lib/Docs/Site_SVD/File_SmartNL.pm' => [qw(0.02 2003/07/19), 'revised 0.01'],
-    'MANIFEST' => [qw(0.02 2003/07/19), 'generated, replaces 0.01'],
-    'Makefile.PL' => [qw(0.02 2003/07/19), 'generated, replaces 0.01'],
-    'README' => [qw(0.02 2003/07/19), 'generated, replaces 0.01'],
-    'lib/File/SmartNL.pm' => [qw(1.11 2003/07/19), 'revised 1.1'],
-    't/File/smartNL.t' => [qw(0.08 2003/07/19), 'revised 0.07'],
+    'lib/Docs/Site_SVD/File_SmartNL.pm' => [qw(0.03 2003/07/26), 'revised 0.02'],
+    'MANIFEST' => [qw(0.03 2003/07/26), 'generated, replaces 0.02'],
+    'Makefile.PL' => [qw(0.03 2003/07/26), 'generated, replaces 0.02'],
+    'README' => [qw(0.03 2003/07/26), 'generated, replaces 0.02'],
+    'lib/File/SmartNL.pm' => [qw(1.1 2003/07/19), 'unchanged'],
+    't/File/smartNL.t' => [qw(0.09 2003/07/26), 'revised 0.08'],
+    'tlib/File/Package.pm' => [qw(1.1 2003/07/26), 'new'],
 
 );
 
@@ -48,11 +49,11 @@ use vars qw(%INVENTORY);
 
   File::SmartNL - translates any combination of CR and NL to the site \nl
 
- Revision: A
+ Revision: B
 
- Version: 0.02
+ Version: 0.03
 
- Date: 2003/07/19
+ Date: 2003/07/26
 
  Prepared for: General Public 
 
@@ -133,7 +134,7 @@ that have not upgraded to Perl 5.6.
 
 =head2 1.3 Document overview.
 
-This document releases File::SmartNL version 0.02
+This document releases File::SmartNL version 0.03
 providing a description of the inventory, installation
 instructions and other information necessary to
 utilize and track this release.
@@ -149,8 +150,8 @@ system file specification.
 This document releases the file found
 at the following repository(s):
 
-   http://www.softwarediamonds/packages/File-SmartNL-0.02
-   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/File-SmartNL-0.02
+   http://www.softwarediamonds/packages/File-SmartNL-0.03
+   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/File-SmartNL-0.03
 
 
 Restrictions regarding duplication and license provisions
@@ -218,30 +219,26 @@ consists of the following files:
 
  file                                                         version date       comment
  ------------------------------------------------------------ ------- ---------- ------------------------
- lib/Docs/Site_SVD/File_SmartNL.pm                            0.02    2003/07/19 revised 0.01
- MANIFEST                                                     0.02    2003/07/19 generated, replaces 0.01
- Makefile.PL                                                  0.02    2003/07/19 generated, replaces 0.01
- README                                                       0.02    2003/07/19 generated, replaces 0.01
- lib/File/SmartNL.pm                                          1.11    2003/07/19 revised 1.1
- t/File/smartNL.t                                             0.08    2003/07/19 revised 0.07
+ lib/Docs/Site_SVD/File_SmartNL.pm                            0.03    2003/07/26 revised 0.02
+ MANIFEST                                                     0.03    2003/07/26 generated, replaces 0.02
+ Makefile.PL                                                  0.03    2003/07/26 generated, replaces 0.02
+ README                                                       0.03    2003/07/26 generated, replaces 0.02
+ lib/File/SmartNL.pm                                          1.1     2003/07/19 unchanged
+ t/File/smartNL.t                                             0.09    2003/07/26 revised 0.08
+ tlib/File/Package.pm                                         1.1     2003/07/26 new
 
 
 =head2 3.3 Changes
-
-The file names from 0.01 were changed as follows:
-
- return if $file =~ s=lib/File/FileUtil.pm=lib/File/SmartNL.pm=;
- return if $file =~ s=t/File/FileUtil/FileUtil.t=t/File/smartNL.t=;
 
 Changes are as follows:
 
 =over 4
 
-=item Test::TestUtil 0.01
+=item Test-TestUtil-0.01
 
 Originated
 
-=item Test::TestUtil 0.02
+=item Test-TestUtil-0.02
 
 Correct failure from Josts Smokehouse" <Jost.Krieger+smokeback@ruhr-uni-bochum.de>
 test run
@@ -266,7 +263,7 @@ that changes file specifications from one operating system
 to another operating system.
 This method has been in service unchanged for some time.
 
-=item Test::TestUtil 0.03
+=item Test-TestUtil-0.03
 
 Correct failure from Josts Smokehouse" <Jost.Krieger+smokeback@ruhr-uni-bochum.de>
 test run
@@ -296,7 +293,7 @@ test script for this
 feature, and added a discusssion of this feature in
 POD discription for I<format_hash_table>
 
-=item Test::TestUtil 0.04
+=item Test-TestUtil-0.04
 
 item our old friend visits again - DOS and UNIX text file incompatibility
 
@@ -326,7 +323,7 @@ t/Test/TestUtil/TestUtil....NOK 18# Test 18 got: '$VAR1 = '\\=head1 Title Page
   File::SmartNL - translates any combination of CR and NL to the site \nl
 
 
- Revision: A
+ Revision: B
 
 [snip]
 
@@ -361,7 +358,7 @@ instead of using the raw file handle.
 The I<fin> method takes any \015\012 combination and changes it into the 
 logical Perl new line, I<"\n">, for the current operating system.
 
-=item File::FileUtil 0.01
+=item File-FileUtil-0.01
 
 =over 4
 
@@ -416,11 +413,11 @@ failure from CPAN testing whose is running on a different platform.
 
 =back
 
-=item File::FileUtil 0.02
+=item File:-FileUtil-0.02
 
 Added the method I<hex_dump>.
 
-=item File::FileUtil 0.03
+=item File-FileUtil-0.03
 
 =over 4
 
@@ -439,7 +436,7 @@ the directories in @INC
 
 =back
 
-=item File::SmartNL 0.01
+=item File-SmartNL-0.01
 
 Removed the methods for addressing the different CR LF 
 combinations for NL between operating systems
@@ -448,13 +445,22 @@ combinations for NL between operating systems
 The module name is now much more descriptive
 of the routines in the module.
 
-Changes to past revisions are as follows: 
-
-=item File::SmartNL 0.02
+=item File-SmartNL-0.02
 
 Removed the dump_hex method. This was a quite diagnostic.
 If need to permanently dump_hex, use the "Data::HexDump"
 or the "Data::Hexdumper" module.
+
+=item File-SmartNL-0.03
+
+Change the test so that test support program modules resides in distribution
+directory tlib directory instead of the lib directory. 
+Because they are no longer in the lib directory, 
+test support files will not be installed as a pre-condition for the 
+test of this module.
+The test of this module will precede immediately.
+The test support files in the tlib directory will vanish after
+the installtion.
 
 =back
 
@@ -489,13 +495,13 @@ Follow the instructions for the the chosen installation software.
 
 The distribution file is at the following respositories:
 
-   http://www.softwarediamonds/packages/File-SmartNL-0.02
-   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/File-SmartNL-0.02
+   http://www.softwarediamonds/packages/File-SmartNL-0.03
+   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/File-SmartNL-0.03
 
 
 =item Prerequistes.
 
- File::Package => 0
+ None.
 
 
 =item Security, privacy, or safety precautions.
@@ -569,7 +575,13 @@ Plain Old Documentation
 
 =head1 2.0 SEE ALSO
 
+=over 4
 
+=item L<File::SmartNL|File::SmartNL> 
+
+=item L<Docs::US_DOD::SVD|Docs::US_DOD::SVD> 
+
+=back
 
 =for html
 <hr>
@@ -596,11 +608,11 @@ __DATA__
 DISTNAME: File-SmartNL^
 REPOSITORY_DIR: packages^
 
-VERSION : 0.02^
+VERSION : 0.03^
 FREEZE: 1^
 PREVIOUS_DISTNAME:  ^
-PREVIOUS_RELEASE: 0.01^
-REVISION: A^
+PREVIOUS_RELEASE: 0.02^
+REVISION: B^
 
 AUTHOR  : SoftwareDiamonds.com E<lt>support@SoftwareDiamonds.comE<gt>^
 ABSTRACT: translates any combination of CR and NL to the site \nl^
@@ -621,17 +633,15 @@ COMPRESS: gzip^
 COMPRESS_SUFFIX: gz^
 
 RESTRUCTURE:  ^
-CHANGE2CURRENT:
-return if $file =~ s=lib/File/FileUtil.pm=lib/File/SmartNL.pm=;
-return if $file =~ s=t/File/FileUtil/FileUtil.t=t/File/smartNL.t=;
-^
+CHANGE2CURRENT:  ^
 
 AUTO_REVISE: 
 lib/File/SmartNL.pm
 t/File/smartNL.t
+lib/File/Package.pm => tlib/File/Package.pm
 ^
 
-PREREQ_PM: File::Package => 0^
+PREREQ_PM:  ^
 TESTS: t/File/smartNL.t^
 EXE_FILES:  ^
 
@@ -641,11 +651,11 @@ Changes are as follows:
 
 \=over 4
 
-\=item Test::TestUtil 0.01
+\=item Test-TestUtil-0.01
 
 Originated
 
-\=item Test::TestUtil 0.02
+\=item Test-TestUtil-0.02
 
 Correct failure from Josts Smokehouse" <Jost.Krieger+smokeback@ruhr-uni-bochum.de>
 test run
@@ -670,7 +680,7 @@ that changes file specifications from one operating system
 to another operating system.
 This method has been in service unchanged for some time.
 
-\=item Test::TestUtil 0.03
+\=item Test-TestUtil-0.03
 
 Correct failure from Josts Smokehouse" <Jost.Krieger+smokeback@ruhr-uni-bochum.de>
 test run
@@ -700,7 +710,7 @@ test script for this
 feature, and added a discusssion of this feature in
 POD discription for I<format_hash_table>
 
-\=item Test::TestUtil 0.04
+\=item Test-TestUtil-0.04
 
 item our old friend visits again - DOS and UNIX text file incompatibility
 
@@ -765,7 +775,7 @@ instead of using the raw file handle.
 The I<fin> method takes any \015\012 combination and changes it into the 
 logical Perl new line, I<"\n">, for the current operating system.
 
-\=item File::FileUtil 0.01
+\=item File-FileUtil-0.01
 
 \=over 4
 
@@ -820,11 +830,11 @@ failure from CPAN testing whose is running on a different platform.
 
 \=back
 
-\=item File::FileUtil 0.02
+\=item File:-FileUtil-0.02
 
 Added the method I<hex_dump>.
 
-\=item File::FileUtil 0.03
+\=item File-FileUtil-0.03
 
 \=over 4
 
@@ -843,7 +853,7 @@ the directories in @INC
 
 \=back
 
-\=item File::SmartNL 0.01
+\=item File-SmartNL-0.01
 
 Removed the methods for addressing the different CR LF 
 combinations for NL between operating systems
@@ -852,13 +862,22 @@ combinations for NL between operating systems
 The module name is now much more descriptive
 of the routines in the module.
 
-Changes to past revisions are as follows: 
-
-\=item File::SmartNL 0.02
+\=item File-SmartNL-0.02
 
 Removed the dump_hex method. This was a quite diagnostic.
 If need to permanently dump_hex, use the "Data::HexDump"
 or the "Data::Hexdumper" module.
+
+\=item File-SmartNL-0.03
+
+Change the test so that test support program modules resides in distribution
+directory tlib directory instead of the lib directory. 
+Because they are no longer in the lib directory, 
+test support files will not be installed as a pre-condition for the 
+test of this module.
+The test of this module will precede immediately.
+The test support files in the tlib directory will vanish after
+the installtion.
 
 \=back
 
@@ -1037,7 +1056,16 @@ Plain Old Documentation
 \=back
 ^
 
-SEE_ALSO:  ^
+SEE_ALSO: 
+\=over 4
+
+\=item L<File::SmartNL|File::SmartNL> 
+
+\=item L<Docs::US_DOD::SVD|Docs::US_DOD::SVD> 
+
+\=back
+
+^
 
 HTML:
 <hr>

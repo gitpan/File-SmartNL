@@ -7,12 +7,11 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE);
-$VERSION = '0.08';
-$DATE = '2003/07/19';
+$VERSION = '0.09';
+$DATE = '2003/07/26';
 
 use Cwd;
 use File::Spec;
-use File::Package;
 use Test;
 
 ######
@@ -22,7 +21,8 @@ use Test;
 # use a BEGIN block so we print our plan before Module Under Test is loaded
 #
 BEGIN { 
-   use vars qw( $__restore_dir__ $__tests__);
+
+   use vars qw( $__restore_dir__ $__tests__ @__restore_inc__);
 
    ########
    # Create the test plan by supplying the number of tests
@@ -38,20 +38,57 @@ BEGIN {
    my ($vol, $dirs, undef) = File::Spec->splitpath( __FILE__ );
    chdir $vol if $vol;
    chdir $dirs if $dirs;
+   ($vol, $dirs) = File::Spec->splitpath(cwd(), 'nofile'); # absolutify
 
+   #######
+   # Add the library of the unit under test (UUT) to @INC
+   # It will be found first because it is first in the include path
+   #
+   use Cwd;
+   @__restore_inc__ = @INC;
+
+   ######
+   # Find root path of the t directory
+   #
+   my @updirs = File::Spec->splitdir( $dirs );
+   while(@updirs && $updirs[-1] ne 't' ) { 
+       chdir File::Spec->updir();
+       pop @updirs;
+   };
+   chdir File::Spec->updir();
+   my $lib_dir = cwd();
+
+   #####
+   # Add lib to the include path so that modules under lib at the
+   # same level as t, will be found
+   #
+   my $inc_dir = File::Spec->catdir( $lib_dir, 'lib' );
+   $inc_dir =~ s|/|\\|g if $^O eq 'MSWin32';  # microsoft abberation
+   unshift @INC, $inc_dir;
+
+   #####
+   # Add tlib to the include path so that modules under tlib at the
+   # same level as t, will be found
+   #
+   $inc_dir = File::Spec->catdir( $lib_dir, 'tlib' );
+   $inc_dir =~ s|/|\\|g if $^O eq 'MSWin32';  # microsoft abberation
+   unshift @INC, $inc_dir;
+   chdir $dirs if $dirs;
 }
 
 END {
 
-    #########
-    # Restore working directory  to when enter script
-    #
-    chdir $__restore_dir__;
+   #########
+   # Restore working directory and @INC back to when enter script
+   #
+   @INC = @__restore_inc__;
+   chdir $__restore_dir__;
 }
 
 #####
-# New $fu object
+# New $fp and $snl objects
 #
+use File::Package;
 my $fp = 'File::Package';
 my $snl = 'File::SmartNL';
 
