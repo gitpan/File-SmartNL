@@ -7,8 +7,8 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE);
-$VERSION = '0.1';   # automatically generated file
-$DATE = '2004/05/03';
+$VERSION = '0.11';   # automatically generated file
+$DATE = '2004/05/13';
 $FILE = __FILE__;
 
 
@@ -78,7 +78,8 @@ BEGIN {
    # and the todo tests
    #
    require Test::Tech;
-   Test::Tech->import( qw(finish is_skip ok plan skip skip_tests tech_config) );
+   Test::Tech->import( qw(finish is_skip ok ok_sub plan skip 
+                          skip_sub skip_tests tech_config) );
    plan(tests => 8);
 
 }
@@ -153,13 +154,13 @@ ok(  $loaded = $fp->is_package_loaded('File::Where'), # actual results
    # Perl code from C:
 my $errors = $fp->load_package($uut, 'config');
 
-skip_tests( 1 ) unless skip(
-      $loaded, # condition to skip test   
+skip_tests( 1 ) unless
+  skip( $loaded, # condition to skip test   
       $errors, # actual results
-      '',  # expected results
+      '', # expected results
       "",
       "Load UUT");
- 
+
 #  ok:  2
 
    # Perl code from C:
