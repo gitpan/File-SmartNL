@@ -10,18 +10,18 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.01';
-$DATE = '2003/06/24';
+$VERSION = '0.02';
+$DATE = '2003/07/19';
 $FILE = __FILE__;
 
 use vars qw(%INVENTORY);
 %INVENTORY = (
-    'lib/Docs/Site_SVD/File_SmartNL.pm' => [qw(0.01 2003/06/24), 'revised 0.03'],
-    'MANIFEST' => [qw(0.01 2003/06/24), 'generated, replaces 0.03'],
-    'Makefile.PL' => [qw(0.01 2003/06/24), 'generated, replaces 0.03'],
-    'README' => [qw(0.01 2003/06/24), 'generated, replaces 0.03'],
-    'lib/File/SmartNL.pm' => [qw(1.1 2003/06/24), 'revised 1.09'],
-    't/File/smartNL.t' => [qw(0.07 2003/06/24), 'revised 0.06'],
+    'lib/Docs/Site_SVD/File_SmartNL.pm' => [qw(0.02 2003/07/19), 'revised 0.01'],
+    'MANIFEST' => [qw(0.02 2003/07/19), 'generated, replaces 0.01'],
+    'Makefile.PL' => [qw(0.02 2003/07/19), 'generated, replaces 0.01'],
+    'README' => [qw(0.02 2003/07/19), 'generated, replaces 0.01'],
+    'lib/File/SmartNL.pm' => [qw(1.11 2003/07/19), 'revised 1.1'],
+    't/File/smartNL.t' => [qw(0.08 2003/07/19), 'revised 0.07'],
 
 );
 
@@ -46,13 +46,13 @@ use vars qw(%INVENTORY);
 
  for
 
-  File::FileUtil - Generic file utilites developed originally for Test::STDmaker and ExtUtils::SVDmaker
+  File::SmartNL - translates any combination of CR and NL to the site \nl
 
- Revision: -
+ Revision: A
 
- Version: 0.01
+ Version: 0.02
 
- Date: 2003/06/24
+ Date: 2003/07/19
 
  Prepared for: General Public 
 
@@ -133,7 +133,7 @@ that have not upgraded to Perl 5.6.
 
 =head2 1.3 Document overview.
 
-This document releases File::SmartNL version 0.01
+This document releases File::SmartNL version 0.02
 providing a description of the inventory, installation
 instructions and other information necessary to
 utilize and track this release.
@@ -149,8 +149,8 @@ system file specification.
 This document releases the file found
 at the following repository(s):
 
-   http://www.softwarediamonds/packages/File-SmartNL-0.01
-   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/File-SmartNL-0.01
+   http://www.softwarediamonds/packages/File-SmartNL-0.02
+   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/File-SmartNL-0.02
 
 
 Restrictions regarding duplication and license provisions
@@ -218,29 +218,22 @@ consists of the following files:
 
  file                                                         version date       comment
  ------------------------------------------------------------ ------- ---------- ------------------------
- lib/Docs/Site_SVD/File_SmartNL.pm                            0.01    2003/06/24 revised 0.03
- MANIFEST                                                     0.01    2003/06/24 generated, replaces 0.03
- Makefile.PL                                                  0.01    2003/06/24 generated, replaces 0.03
- README                                                       0.01    2003/06/24 generated, replaces 0.03
- lib/File/SmartNL.pm                                          1.1     2003/06/24 revised 1.09
- t/File/smartNL.t                                             0.07    2003/06/24 revised 0.06
+ lib/Docs/Site_SVD/File_SmartNL.pm                            0.02    2003/07/19 revised 0.01
+ MANIFEST                                                     0.02    2003/07/19 generated, replaces 0.01
+ Makefile.PL                                                  0.02    2003/07/19 generated, replaces 0.01
+ README                                                       0.02    2003/07/19 generated, replaces 0.01
+ lib/File/SmartNL.pm                                          1.11    2003/07/19 revised 1.1
+ t/File/smartNL.t                                             0.08    2003/07/19 revised 0.07
 
 
 =head2 3.3 Changes
 
-The file names from 0.03 were changed as follows:
+The file names from 0.01 were changed as follows:
 
  return if $file =~ s=lib/File/FileUtil.pm=lib/File/SmartNL.pm=;
  return if $file =~ s=t/File/FileUtil/FileUtil.t=t/File/smartNL.t=;
 
-Removed the methods for addressing the different CR LF 
-combinations for NL between operating systems
- from the "File::FileUtil" module to their own module
-"File::SmartNL" module.
-The module name is now much more descriptive
-of the routines in the module.
-
-Changes to past revisions are as follows: 
+Changes are as follows:
 
 =over 4
 
@@ -330,10 +323,10 @@ t/Test/TestUtil/TestUtil....NOK 18# Test 18 got: '$VAR1 = '\\=head1 Title Page
  for
 
 
-  File::FileUtil - Generic file utilites developed originally for Test::STDmaker and ExtUtils::SVDmaker
+  File::SmartNL - translates any combination of CR and NL to the site \nl
 
 
- Revision: -
+ Revision: A
 
 [snip]
 
@@ -348,7 +341,7 @@ t/Test/TestUtil/TestUtil....NOK 18# Test 18 got: '$VAR1 = '\\=head1 Title Page
  for
 
 
-  File::FileUtil - Generic file utilites developed originally for Test::STDmaker and ExtUtils::SVDmaker
+  File::SmartNL - translates any combination of CR and NL to the site \nl
 
 What we have before, was a totally "failure to communicate." aka Cool Hand Luke. 
 VAR1 was empty. Now VAR1 has something. It is not completely dead.
@@ -446,21 +439,29 @@ the directories in @INC
 
 =back
 
+=item File::SmartNL 0.01
+
+Removed the methods for addressing the different CR LF 
+combinations for NL between operating systems
+ from the "File::FileUtil" module to their own module
+"File::SmartNL" module.
+The module name is now much more descriptive
+of the routines in the module.
+
+Changes to past revisions are as follows: 
+
+=item File::SmartNL 0.02
+
+Removed the dump_hex method. This was a quite diagnostic.
+If need to permanently dump_hex, use the "Data::HexDump"
+or the "Data::Hexdumper" module.
+
 =back
 
 =head2 3.4 Adaptation data.
 
 This installation requires that the installation site
 has the Perl programming language installed.
-Installation sites running Microsoft Operating systems require
-the installation of Unix utilities. 
-An excellent, highly recommended Unix utilities for Microsoft
-operating systems is unxutils by Karl M. Syring.
-A copy is available at the following web sites:
-
- http://unxutils.sourceforge.net
- http://packages.SoftwareDiamnds.com
-
 There are no other additional requirements or tailoring needed of 
 configurations files, adaptation data or other software needed for this
 installation particular to any installation site.
@@ -488,13 +489,14 @@ Follow the instructions for the the chosen installation software.
 
 The distribution file is at the following respositories:
 
-   http://www.softwarediamonds/packages/File-SmartNL-0.01
-   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/File-SmartNL-0.01
+   http://www.softwarediamonds/packages/File-SmartNL-0.02
+   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/File-SmartNL-0.02
 
 
 =item Prerequistes.
 
-File::Package => 0
+ File::Package => 0
+
 
 =item Security, privacy, or safety precautions.
 
@@ -592,16 +594,17 @@ Plain Old Documentation
 __DATA__
 
 DISTNAME: File-SmartNL^
-VERSION : 0.01^
 REPOSITORY_DIR: packages^
-FREEZE: 1^
 
-PREVIOUS_DISTNAME: File-FileUtil^
-PREVIOUS_RELEASE: 0.03^
-REVISION: -^
+VERSION : 0.02^
+FREEZE: 1^
+PREVIOUS_DISTNAME:  ^
+PREVIOUS_RELEASE: 0.01^
+REVISION: A^
+
 AUTHOR  : SoftwareDiamonds.com E<lt>support@SoftwareDiamonds.comE<gt>^
-ABSTRACT: Generic file utilities originally developed to support Test::STDmaker^
-TITLE   :  File::FileUtil - Generic file utilites developed originally for Test::STDmaker and ExtUtils::SVDmaker^
+ABSTRACT: translates any combination of CR and NL to the site \nl^
+TITLE   :  File::SmartNL - translates any combination of CR and NL to the site \nl^
 END_USER: General Public^
 COPYRIGHT: copyright © 2003 Software Diamonds^
 CLASSIFICATION: NONE^
@@ -633,14 +636,8 @@ TESTS: t/File/smartNL.t^
 EXE_FILES:  ^
 
 CHANGES:
-Removed the methods for addressing the different CR LF 
-combinations for NL between operating systems
- from the "File::FileUtil" module to their own module
-"File::SmartNL" module.
-The module name is now much more descriptive
-of the routines in the module.
 
-Changes to past revisions are as follows: 
+Changes are as follows:
 
 \=over 4
 
@@ -845,6 +842,23 @@ returns the parent directory of all
 the directories in @INC
 
 \=back
+
+\=item File::SmartNL 0.01
+
+Removed the methods for addressing the different CR LF 
+combinations for NL between operating systems
+ from the "File::FileUtil" module to their own module
+"File::SmartNL" module.
+The module name is now much more descriptive
+of the routines in the module.
+
+Changes to past revisions are as follows: 
+
+\=item File::SmartNL 0.02
+
+Removed the dump_hex method. This was a quite diagnostic.
+If need to permanently dump_hex, use the "Data::HexDump"
+or the "Data::Hexdumper" module.
 
 \=back
 

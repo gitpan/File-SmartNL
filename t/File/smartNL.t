@@ -7,8 +7,8 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE);
-$VERSION = '0.07';
-$DATE = '2003/06/24';
+$VERSION = '0.08';
+$DATE = '2003/07/19';
 
 use Cwd;
 use File::Spec;
@@ -22,13 +22,13 @@ use Test;
 # use a BEGIN block so we print our plan before Module Under Test is loaded
 #
 BEGIN { 
-   use vars qw( $__restore_dir__ @__restore_inc__ $__tests__);
+   use vars qw( $__restore_dir__ $__tests__);
 
    ########
    # Create the test plan by supplying the number of tests
    # and the todo tests
    #
-   $__tests__ = 6;
+   $__tests__ = 5;
    plan(tests => $__tests__);
 
    ########
@@ -39,46 +39,13 @@ BEGIN {
    chdir $vol if $vol;
    chdir $dirs if $dirs;
 
-   #######
-   # Add the current test directory to @INC
-   #   (first t directory in upward march)
-   #
-   # Add the library of the unit under test (UUT) to @INC
-   #   (lib directory at the same level as the t directory)
-   #
-   @__restore_inc__ = @INC;
-
-   my $work_dir = cwd(); # remember the work directory so can restore it
-
-   #######
-   # Add the test directory root t to @INC
-   #
-   ($vol,$dirs) = File::Spec->splitpath( $work_dir, 'nofile');
-   my @dirs = File::Spec->splitdir( $dirs );
-   while( $dirs[-1] ne 't' ) { 
-       chdir File::Spec->updir();
-       pop @dirs;
-   };
-
-
-   ######
-   # Add the unit under test root lib to @INC
-   #
-   unshift @INC, cwd();  # include the current test directory
-   chdir File::Spec->updir();
-   my $lib_dir = File::Spec->catdir( cwd(), 'lib' );
-   unshift @INC, $lib_dir;
-
-   chdir $work_dir;
-
 }
 
 END {
 
     #########
-    # Restore working directory and @INC back to when enter script
+    # Restore working directory  to when enter script
     #
-    @INC = @__restore_inc__;
     chdir $__restore_dir__;
 }
 
@@ -148,50 +115,7 @@ my $text_expected = "line1\nline2\nline3\nline4\n";
 ok($snl->smart_nl($text_actual), $text_expected);
 
 
-#######
-# 
-# ok: 6
-#
-# R:
-# 
-print "# hex_dump\n";
-$text_actual = <<'EOF';
-1..8 todo 2 5;
-# OS            : MSWin32
-# Perl          : 5.6.1
-# Local Time    : Thu Jun 19 23:49:54 2003
-# GMT Time      : Fri Jun 20 03:49:54 2003 GMT
-# Number Storage: string
-# Test::Tech    : 1.06
-# Test          : 1.15
-# Data::Dumper  : 2.102
-# =cut 
-# Pass test
-ok 1
-EOF
-    
-$text_actual =~ s/\n/\012/g; # replace logcial \n with ASCII \012 LF
-
-$text_expected = <<'EOF';
-312e2e3820746f646f203220353b0a23204f5320
-20202020202020202020203a204d5357696e3332
-0a23205065726c202020202020202020203a2035
-2e362e310a23204c6f63616c2054696d65202020
-203a20546875204a756e2031392032333a34393a
-353420323030330a2320474d542054696d652020
-202020203a20467269204a756e2032302030333a
-34393a3534203230303320474d540a23204e756d
-6265722053746f726167653a20737472696e670a
-2320546573743a3a54656368202020203a20312e
-30360a232054657374202020202020202020203a
-20312e31350a2320446174613a3a44756d706572
-20203a20322e3130320a23203d637574200a2320
-5061737320746573740a6f6b20310a
-EOF
-
-$text_actual  = $snl->hex_dump( $text_actual  );
-$snl->fout( 'actual.txt', $text_actual);
-ok($text_actual, $text_expected);
+unlink 'actual.txt';
 
 ####
 # 

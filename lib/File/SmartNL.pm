@@ -16,10 +16,12 @@ use warnings::register;
 
 use vars qw($VERSION $DATE $FILE);
 $VERSION = '1.1';
-$DATE = '2003/06/24';
+$DATE = '2003/07/19';
 $FILE = __FILE__;
 
 use SelfLoader;
+
+1
 
 __DATA__
 
@@ -118,27 +120,6 @@ sub fout
    $char_out; 
 }
 
-
-#####
-#
-#
-sub hex_dump
-{
-    my (undef, $text) = @_;
-    $text = unpack('H*', $text);
-    my $result = ''; 
-    while( $text ) { 
-        if( 40 < length( $text) ) {
-            $result .= substr( $text, 0, 40 ) . "\n";
-            $text = substr( $text,40);
-        }
-        else {
-            $result .= substr( $text, 0) . "\n";
-            $text = '';
-        }
-    }
-    $result
-}
 
 
 1
@@ -273,45 +254,6 @@ operating systems without any other processing. For example,
  ==> my $text = "=head1 Title Page\r\n\r\nSoftware Version Description\r\n\r\nfor\r\n\r\n";
  ==> File::SmartNL->fout( 'test.pm', $text, {binary => 1} );
  ==> File::SmartNL->fin( 'test.pm' );
-
-=head2 hex_dump method
-
-Sometimes the designer's eyes need to see what the computer sees,
-I<i.e.> the actual bytes of a file content. 
-The hex_dump method provides these eyes.
-For example,
-
- ==> $text
- 1..8 todo 2 5;
- # OS            : MSWin32
- # Perl          : 5.6.1
- # Local Time    : Thu Jun 19 23:49:54 2003
- # GMT Time      : Fri Jun 20 03:49:54 2003 GMT
- # Number Storage: string
- # Test::Tech    : 1.06
- # Test          : 1.15
- # Data::Dumper  : 2.102
- # =cut 
- # Pass test
- ok 1
- EOF
-
- ==> File::SmartNL->hex_dump( $text )
-
- 312e2e3820746f646f203220353b0a23204f5320
- 20202020202020202020203a204d5357696e3332
- 0a23205065726c202020202020202020203a2035
- 2e362e310a23204c6f63616c2054696d65202020
- 203a20546875204a756e2031392032333a34393a
- 353420323030330a2320474d542054696d652020
- 202020203a20467269204a756e2032302030333a
- 34393a3534203230303320474d540a23204e756d
- 6265722053746f726167653a20737472696e670a
- 2320546573743a3a54656368202020203a20312e
- 30360a232054657374202020202020202020203a
- 20312e31350a2320446174613a3a44756d706572
- 20203a20322e3130320a23203d637574200a2320
- 5061737320746573740a6f6b20310a
 
 =head2 smart_nl method
 
